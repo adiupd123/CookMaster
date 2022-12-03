@@ -1,61 +1,69 @@
 package com.adiupd123.cookmaster
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
+import com.adiupd123.cookmaster.classes.RecipeResponse
 import com.adiupd123.cookmaster.databinding.ActivityMainBinding
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import retrofit2.HttpException
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.create
-import retrofit2.http.Path
 import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
 
-    val TAG = "MainActivity.kt"
+const val TAG = "MainActivity.kt"
+
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var recipeAdapter: RecipeAdapter
 
-    private lateinit var searchedRecipe: String
-
-    private lateinit var userResponse: Response<List<Recipe>>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val userService = UserService()
-        searchedRecipe = binding.searchEditText.text.toString()
         setupRecyclerView()
+        val userService = UserService()
+        var searchedRecipe = binding.searchEditText.getText().toString()
 
+        binding.searchButton.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(view: View?) {
+                if (Build.VERSION.SDK_INT > 9) {
+                    val policy = ThreadPolicy.Builder().permitAll().build()
+                    StrictMode.setThreadPolicy(policy)
 
-        binding.searchButton.setOnClickListener {
-            fun onClick(v: View): Unit {
+                    binding.progressBar.isVisible = true
+                    Toast.makeText(applicationContext, "Button is clicked", Toast.LENGTH_SHORT).show()
 
-                try{
-                    userResponse = userService.userApi.getRecipes(searchedRecipe).execute()
-                } catch(e: IOException){
-                    Log.e(TAG, "IOException, you might not have internet connection")
-                }catch (e: HttpException){
-                    Log.e(TAG, "HttpException, unexpected response")
-                }
+                    val userResponse = userService.userApi.getRecipes("/recipes/list?from=0&size=40&q=${searchedRecipe}").execute()
+                    try{
 
-                if(userResponse.isSuccessful && userResponse.body() !=  null){
-                    recipeAdapter.recipes = userResponse.body()!!
-                } else{
-                    Log.e(TAG, "Response not successful")
+                    } catch(e: IOException){
+                        Log.e(TAG, "IOException, you might not have internet connection")
+                        binding.progressBar.isVisible = false
+                    }catch (e: HttpException){
+                        Log.e(TAG, "HttpException, unexpected response")
+                        binding.progressBar.isVisible = false
+                    }
+
+                    if(userResponse.isSuccessful && userResponse.body() !=  null){
+                        Log.e(TAG, userResponse.body().toString())
+                        var recipeResponse = userResponse.body()!!
+                        recipeAdapter.recipes = recipeResponse.results
+                    } else{
+                        Log.e(TAG, "Response not successful")
+                    }
                 }
 
             }
-        }
+        })
     }
 
     fun setupRecyclerView() = binding.recipesRecyclerView.apply {

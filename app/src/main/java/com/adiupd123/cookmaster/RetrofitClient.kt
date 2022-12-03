@@ -3,6 +3,7 @@ package com.adiupd123.cookmaster
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
@@ -10,6 +11,9 @@ object RetrofitClient {
 
     val okHttpClient = OkHttpClient()
         .newBuilder()
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS) // write timeout
+        .readTimeout(30, TimeUnit.SECONDS)
         .addInterceptor(RequestInterceptor)
         .build()
 

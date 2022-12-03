@@ -1,5 +1,6 @@
 package com.adiupd123.cookmaster
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.adiupd123.cookmaster.classes.Recipe
 import com.adiupd123.cookmaster.databinding.RecipeItemBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.internal.ContextUtils.getActivity
@@ -31,8 +33,6 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
         get() = differ.currentList
         set(value) { differ.submitList(value) }
 
-
-
     override fun getItemCount(): Int = recipes.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
@@ -47,11 +47,11 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
         holder.binding.apply {
             val recipe = recipes[position]
             Glide.with(this.root)
-                .load(recipe.thumbnailUrl)
+                .load(recipe.thumbnail_url)
                 .centerCrop()
                 .into(recipeImageView)
-            recipeNameTextView.text = recipe.recipeName
-            recipeCreatedDateTextView.text = recipe.createdAt.toString()
+            recipeNameTextView.text = recipe.name
+            recipeCreatedDateTextView.text = recipe.created_at.toString()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.adiupd123.cookmaster
 
+import com.adiupd123.cookmaster.classes.RecipeResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -12,7 +13,7 @@ interface RecipeApi {
             "X-RapidAPI-Host: tasty.p.rapidapi.com"
         ]
     )
-    @GET("/recipes/list?from=0&size=40&q={q}")
-    fun getRecipes(@Path("q") q: String): Call<List<Recipe>>
+    @GET
+    fun getRecipes(@Url url: String): Call<RecipeResponse>
 
 }
