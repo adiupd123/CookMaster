@@ -4,5 +4,5 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class Credit(
     @JsonProperty("name")val name: String,
-    @JsonProperty("type")val type: String?
+    @JsonProperty("type")val type: String
 )

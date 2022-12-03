@@ -4,6 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class Measurement(
     @JsonProperty("id")val id: Int,
-    @JsonProperty("quantity")val quantity: String?,
-    @JsonProperty("unit")val unit: Unit?
+    @JsonProperty("quantity")val quantity: String,
+    @JsonProperty("unit")val unit: Unit
 )

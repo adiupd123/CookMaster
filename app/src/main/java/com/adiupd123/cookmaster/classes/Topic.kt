@@ -4,5 +4,5 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class Topic(
     @JsonProperty("name") val name: String,
-    @JsonProperty("slug")val slug: String?
+    @JsonProperty("slug")val slug: String
 )

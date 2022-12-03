@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     if(userResponse.isSuccessful && userResponse.body() !=  null){
-                        Log.e(TAG, userResponse.body().toString())
-                        var recipeResponse = userResponse.body()!!
-                        recipeAdapter.recipes = recipeResponse.results
+                        Log.e("Checking Response", userResponse.body().toString())
+//                        var recipeResponse = userResponse.body()!!
+//                        recipeAdapter.recipes = recipeResponse.results
                     } else{
                         Log.e(TAG, "Response not successful")
                     }
