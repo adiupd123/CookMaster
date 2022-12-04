@@ -1,8 +1,9 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
+
 
 class RecipeResponse(
-    @JsonProperty("count") val count: Int,
-    @JsonProperty("results") val results: List<Recipe>
+    @SerializedName("count") val count: Int,
+    @SerializedName("results") val results: List<Recipe>
 )

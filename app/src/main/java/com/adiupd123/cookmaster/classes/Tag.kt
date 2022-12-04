@@ -1,10 +1,10 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 class Tag(
-    @JsonProperty("display_name") val display_name: String,
-    @JsonProperty("id") val id: Int,
-    @JsonProperty("name") val name: String,
-    @JsonProperty("type")  val type: String
+    @SerializedName("display_name") val display_name: String,
+    @SerializedName("id") val id: Int,
+    @SerializedName("name") val name: String,
+    @SerializedName("type")  val type: String
 )

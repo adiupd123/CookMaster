@@ -1,11 +1,11 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 class Unit(
-    @JsonProperty("abbreviation")  val abbreviation: String,
-    @JsonProperty("display_plural")   val display_plural: String,
-    @JsonProperty("display_singular")  val display_singular: String,
-    @JsonProperty("name")   val name: String,
-    @JsonProperty("system")   val system: String
+    @SerializedName("abbreviation")  val abbreviation: String,
+    @SerializedName("display_plural")   val display_plural: String,
+    @SerializedName("display_singular")  val display_singular: String,
+    @SerializedName("name")   val name: String,
+    @SerializedName("system")   val system: String
 )

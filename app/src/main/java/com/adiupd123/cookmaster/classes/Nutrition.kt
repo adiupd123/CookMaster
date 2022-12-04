@@ -1,13 +1,13 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 class Nutrition(
-    @JsonProperty("calories")val calories: Int,
-    @JsonProperty("carbohydrates")val carbohydrates: Int,
-    @JsonProperty("fat")val fat: Int,
-    @JsonProperty("fiber")val fiber: Int,
-    @JsonProperty("protein")val protein: Int,
-    @JsonProperty("sugar")val sugar: Int,
-    @JsonProperty("updated_at")val updated_at: String
+    @SerializedName("calories")val calories: Int,
+    @SerializedName("carbohydrates")val carbohydrates: Int,
+    @SerializedName("fat")val fat: Int,
+    @SerializedName("fiber")val fiber: Int,
+    @SerializedName("protein")val protein: Int,
+    @SerializedName("sugar")val sugar: Int,
+    @SerializedName("updated_at")val updated_at: String
 )

@@ -1,9 +1,9 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 class UserRatings(
-    @JsonProperty("count_negative")   val count_negative: Int,
-    @JsonProperty("count_positive")    val count_positive: Int,
-    @JsonProperty("score")   val score: Int
+    @SerializedName("count_negative")   val count_negative: Int,
+    @SerializedName("count_positive")    val count_positive: Int,
+    @SerializedName("score")   val score: Double
 )

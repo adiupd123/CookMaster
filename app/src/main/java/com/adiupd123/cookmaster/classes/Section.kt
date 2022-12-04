@@ -1,9 +1,9 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 class Section(
-    @JsonProperty("components")val components: List<Component>,
-    @JsonProperty("name")val name: Any,
-    @JsonProperty("position") val position: Int
+    @SerializedName("components")val components: List<Component>,
+    @SerializedName("name")val name: Any,
+    @SerializedName("position") val position: Int
 )

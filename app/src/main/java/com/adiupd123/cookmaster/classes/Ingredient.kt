@@ -1,12 +1,13 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
+
 
 class Ingredient(
-    @JsonProperty("created_at")val created_at: Int,
-    @JsonProperty("display_plural")val display_plural: String,
-    @JsonProperty("display_singular")val display_singular: String,
-    @JsonProperty("id")val id: Int,
-    @JsonProperty("name")val name: String,
-    @JsonProperty("updated_at")val updated_at: Int
+    @SerializedName("created_at")val created_at: Int,
+    @SerializedName("display_plural")val display_plural: String,
+    @SerializedName("display_singular")val display_singular: String,
+    @SerializedName("id")val id: Int,
+    @SerializedName("name")val name: String,
+    @SerializedName("updated_at")val updated_at: Int
 )

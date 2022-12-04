@@ -1,8 +1,8 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 class Topic(
-    @JsonProperty("name") val name: String,
-    @JsonProperty("slug")val slug: String
+    @SerializedName("name") val name: String,
+    @SerializedName("slug")val slug: String
 )

@@ -1,8 +1,9 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
+
 
 class Credit(
-    @JsonProperty("name")val name: String,
-    @JsonProperty("type")val type: String
+    @SerializedName("name")val name: String,
+    @SerializedName("type")val type: String
 )

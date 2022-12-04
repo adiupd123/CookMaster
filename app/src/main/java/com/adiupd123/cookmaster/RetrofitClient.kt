@@ -2,6 +2,7 @@ package com.adiupd123.cookmaster
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -21,6 +22,6 @@ object RetrofitClient {
         Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(BASE_URL)
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 }

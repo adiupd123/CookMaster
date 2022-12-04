@@ -1,8 +1,8 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 class Show(
-    @JsonProperty("id") val id: Int,
-    @JsonProperty("name")  val name: String
+    @SerializedName("id") val id: Int,
+    @SerializedName("name")  val name: String
 )

@@ -1,11 +1,12 @@
 package com.adiupd123.cookmaster.classes
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
+
 
 class Price(
-    @JsonProperty("consumption_portion")val consumption_portion: Int,
-    @JsonProperty("consumption_total")val consumption_total: Int,
-    @JsonProperty("portion")val portion: Int,
-    @JsonProperty("total")val total: Int,
-    @JsonProperty("updated_at")val updated_at: String
+    @SerializedName("consumption_portion")val consumption_portion: Int,
+    @SerializedName("consumption_total")val consumption_total: Int,
+    @SerializedName("portion")val portion: Int,
+    @SerializedName("total")val total: Int,
+    @SerializedName("updated_at")val updated_at: String
 )
