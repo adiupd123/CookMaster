@@ -27,31 +27,44 @@ const val TAG = "MainActivity.kt"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var recipeAdapter: RecipeAdapter
+    private var searchedRecipe: String? = ""
+    private lateinit var userResponse: Response<RecipeResponse>
+    private lateinit var userService: UserService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val btn = binding.button
-        val userService = UserService()
+        setupRecyclerView()
 
-        btn.setOnClickListener {
+        userService = UserService()
+
+        searchedRecipe = binding.searchEditText.getText().toString()
+
+        binding.button.setOnClickListener {
+            binding.progressBar.isVisible = true
             GlobalScope.launch(Dispatchers.IO) {
                 // make the req here//
-                val userResponse = userService.userApi.getRecipes("/recipes/list?from=0&size=40&q=Paneer").execute()
+                searchedRecipe = binding.searchEditText.getText().toString()
+                userResponse = userService.userApi.getRecipes("/recipes/list?from=0&size=40&q=$searchedRecipe").execute()
                 withContext (Dispatchers.Main) {
                     if(userResponse.isSuccessful && userResponse.body() !=  null){
                         Log.e("Checking Response", userResponse.body().toString())
                         var recipeResponse = userResponse.body()!!
-                        var recipes = recipeResponse.results
-
+                        recipeAdapter.recipes = recipeResponse.results
                     } else{
                         Log.e(TAG, "Response not successful")
                     }
+                    binding.progressBar.isVisible = false
                 }
             }
         }
     }
-
+    fun setupRecyclerView() = binding.recipesRecyclerView.apply {
+        recipeAdapter = RecipeAdapter()
+        adapter = recipeAdapter
+        layoutManager = GridLayoutManager(this@MainActivity, 2)
+    }
 }

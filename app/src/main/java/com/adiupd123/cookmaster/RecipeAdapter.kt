@@ -13,13 +13,16 @@ import com.adiupd123.cookmaster.classes.Recipe
 import com.adiupd123.cookmaster.databinding.RecipeItemBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.internal.ContextUtils.getActivity
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
     inner class RecipeViewHolder(val binding: RecipeItemBinding): RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback  = object: DiffUtil.ItemCallback<Recipe>(){
         override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-            return oldItem == newItem
+            return oldItem.equals(newItem)
         }
 
         override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
@@ -51,7 +54,12 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
                 .centerCrop()
                 .into(recipeImageView)
             recipeNameTextView.text = recipe.name
-            recipeCreatedDateTextView.text = recipe.created_at.toString()
+            val stamp = Timestamp(recipe.created_at.toLong())
+            val date = Date(stamp.time)
+            val sdf = SimpleDateFormat("dd-MM-yyyy")
+            sdf.timeZone = TimeZone.getDefault()
+            val formattedDate = sdf.format(date)
+            recipeCreatedDateTextView.text = formattedDate
         }
     }
 
