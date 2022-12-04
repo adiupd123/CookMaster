@@ -18,9 +18,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
-    inner class RecipeViewHolder(val binding: RecipeItemBinding): RecyclerView.ViewHolder(binding.root)
+    inner class RecipeViewHolder(val binding: RecipeItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback  = object: DiffUtil.ItemCallback<Recipe>(){
+    private val diffCallback = object : DiffUtil.ItemCallback<Recipe>() {
         override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
             return oldItem.equals(newItem)
         }
@@ -34,17 +35,22 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
     var recipes: List<Recipe>
         get() = differ.currentList
-        set(value) { differ.submitList(value) }
+        set(value) {
+            differ.submitList(value)
+        }
 
     override fun getItemCount(): Int = recipes.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        return RecipeViewHolder(RecipeItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        ))
+        return RecipeViewHolder(
+            RecipeItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
+
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         holder.binding.apply {
@@ -62,5 +68,4 @@ class RecipeAdapter: RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
             recipeCreatedDateTextView.text = formattedDate
         }
     }
-
 }

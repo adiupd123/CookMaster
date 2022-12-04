@@ -1,25 +1,19 @@
 package com.adiupd123.cookmaster
 
-import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy
 import android.util.Log
-import android.view.View
-import android.widget.Toast
+import android.widget.AbsListView.OnScrollListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
-import com.adiupd123.cookmaster.classes.Recipe
+import androidx.recyclerview.widget.RecyclerView
 import com.adiupd123.cookmaster.classes.RecipeResponse
 import com.adiupd123.cookmaster.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
 import retrofit2.Response
-import java.io.IOException
 
 
 const val TAG = "MainActivity.kt"
