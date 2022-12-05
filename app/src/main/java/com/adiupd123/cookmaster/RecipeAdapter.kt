@@ -1,18 +1,13 @@
 package com.adiupd123.cookmaster
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.adiupd123.cookmaster.classes.Recipe
+import com.adiupd123.cookmaster.models.Recipe
 import com.adiupd123.cookmaster.databinding.RecipeItemBinding
 import com.bumptech.glide.Glide
-import com.google.android.material.internal.ContextUtils.getActivity
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*

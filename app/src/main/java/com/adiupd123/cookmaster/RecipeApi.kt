@@ -1,8 +1,7 @@
 package com.adiupd123.cookmaster
 
-import com.adiupd123.cookmaster.classes.RecipeResponse
+import com.adiupd123.cookmaster.models.RecipeResponse
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 interface RecipeApi {
