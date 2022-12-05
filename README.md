@@ -8,7 +8,7 @@ Cook Master is an Android App, in which we can search recipes. Each Recipe item 
 
 ## DEMO
 
-![demo_app](https://user-images.githubusercontent.com/78906777/205507500-3c0e27c8-ce6e-4993-8566-c6c0fb2a1154.gif)
+![app_demo](https://user-images.githubusercontent.com/78906777/205712319-43724b7f-1a1b-4586-bbf4-1e7e0bf8a76f.gif)
 
 ## Tech Stack
 
